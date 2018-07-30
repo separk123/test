@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+     // google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+
+        var options = {
+          chart: {
+            title: '지하철 혼잡도',
+            subtitle: '시간에 따른 혼잡도',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+     <br><hr><br>
+    <button onclick="ajaxReq()">출근시간 혼잡도 보기</button>
+    
+    <script type="text/javascript">
+	function ajaxReq(){
+ 		var xhttp = new XMLHttpRequest();
+  		xhttp.onreadystatechange = function() {
+    		if (this.readyState == 4 && this.status == 200) {
+    			drawChart(this.responseText);
+    }
+  };
+  xhttp.open("GET", "index.html", true);
+  xhttp.send();
+}
+	</script>
+  </body>
+</html>
+<title>Insert title here</title>
+</head>
+<body>
